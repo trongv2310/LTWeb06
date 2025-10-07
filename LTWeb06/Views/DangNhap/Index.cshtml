@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@if (ViewBag.ThongBao != null)
+{
+    <div class="alert alert-danger">@ViewBag.ThongBao</div>
+}
+<form class="form-container" action="" method="post">
+    <div>
+        <label for="SDT" class="form-label">Số điện thoại</label>
+        <input type="tel" name="SDT" value="" class="m-1" />
+    </div>
+    <div>
+        <label for="MatKhau" class="form-label">Mật khẩu</label>
+        <input type="text" name="MatKhau" value="" style="margin-left:30px" />
+    </div>
+    <div class="text-center">
+        <button class="btn btn-outline-secondary" type="submit">Đăng nhập</button>
+    </div>
+</form>
+S

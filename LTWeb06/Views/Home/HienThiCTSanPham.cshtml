@@ -1,0 +1,31 @@
+﻿@model LTWeb06.Models.SanPham
+@{
+    ViewBag.Title = "HienThiSanPham";
+}
+
+<h2>HienThiSanPham</h2>
+<table class="table table-striped border-1">
+    <thead>
+        <tr>
+            <th>MaSP</th>
+            <th>TenSP</th>
+            <th>DonGia</th>
+            <th>HinhAnh</th>
+            <th>MoTa</th>
+            <th>MaLoai</th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td>@Model.MaSP</td>
+                <td>@Model.TenSP</td>
+                <td>@Model.Gia</td>
+                <td>
+                    <img src="Hinh" alt="TenSP" style="max-width: 100px; max-height: 100px;" />
+                </td>
+                <td>@Model.GhiChu</td>
+                <td>@Model.MaLoai</td>
+               
+            </tr>
+    </tbody>
+</table>

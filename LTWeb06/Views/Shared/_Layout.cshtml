@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="~/Content/css/style.css">
+    @Styles.Render("~/Content/css")
+
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Logo Website</div>
+                <nav>
+                    <ul>
+                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Sản Phẩm", "HienThiSanPham", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Loại Sản Phẩm", "HienThiLoai", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Tìm kiếm sản phẩm","TimKiem","Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Lịch sử giao dịch","LichSu","Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        @if (Session["SDT"] != null)
+                        {
+                            <li class="nav-item d-flex align-items-center" style="margin-left:12px;">
+                                <span class="nav-link" style="padding-right:0;">Xin chào <strong>@Session["SDT"]</strong></span>
+                            </li>
+                            <li class="nav-item" style="margin-left:8px;">
+                                @Html.ActionLink("Đăng xuất", "Logout", "DangNhap", new { area = "" }, new { @class = "btn btn-secondary", style = "margin-left:6px;" })
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item" style="margin-left:12px;">
+                                @Html.ActionLink("Đăng nhập", "Index", "DangNhap", new { area = "" }, new { @class = "btn btn-outline-primary btn-sm" })
+                            </li>
+                            <li class="nav-item" style="margin-left:8px;">
+                                @Html.ActionLink("Đăng ký", "Register", "DangNhap", new { area = "" }, new { @class = "btn btn-primary btn-sm" })
+                            </li>
+                        }
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>Thông Tin Liên Hệ</h3>
+                        <p>Địa chỉ: 123 Đường ABC, Quận XYZ, TP. Hồ Chí Minh</p>
+                        <p>Điện thoại: (0123) 456-789</p>
+                        <p>Email: contact@example.com</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Liên Kết Nhanh</h3>
+                        <a href="#">Trang Chủ</a>
+                        <a href="#">Giới Thiệu</a>
+                        <a href="#">Dịch Vụ</a>
+                        <a href="#">Sản Phẩm</a>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Theo Dõi Chúng Tôi</h3>
+                        <a href="#">Facebook</a>
+                        <a href="#">Twitter</a>
+                        <a href="#">Instagram</a>
+                        <a href="#">LinkedIn</a>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2023 Tên Công Ty. Tất cả các quyền được bảo lưu. | Phát triển bởi Nhóm Phát Triển</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

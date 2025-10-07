@@ -1,0 +1,32 @@
+﻿@model IEnumerable<LTWeb06.Models.HoaDon>
+
+<h2>Lịch sử giao dịch</h2>
+
+@if (!Model.Any())
+{
+    <p>Không có hóa đơn.</p>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Mã HĐ</th>
+                <th>Ngày lập</th>
+                <th>Tổng tiền</th>
+                <th>Chi tiết</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var hd in Model)
+            {
+                <tr>
+                    <td>@hd.MaHoaDon</td>
+                    <td>@hd.NgayTao.ToString("g")</td>
+                    <td>@hd.TongTien.ToString("N0")</td>
+                    <td>@Html.ActionLink("Xem", "ChiTietHD", new { id = hd.MaHoaDon })</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

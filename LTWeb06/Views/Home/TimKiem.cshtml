@@ -1,0 +1,61 @@
+﻿@model IEnumerable<LTWeb06.Models.SanPham>
+@{
+    ViewBag.Title = "Tìm kiếm sản phẩm";
+}
+
+<h2>Tìm kiếm sản phẩm</h2>
+
+@using (Html.BeginForm("TimKiem", "Home", FormMethod.Get))
+{
+    <div>
+        <label>Loại:</label>
+        <select name="maLoai" class="form-control" style="width:200px;display:inline-block;margin-right:10px;">
+            <option value="">Tất cả</option>
+            @foreach (var l in (List<LTWeb06.Models.Loai>)ViewBag.DSLoai)
+            {
+                <option value="@l.MaLoai" @(ViewBag.MaLoai != null && (int)ViewBag.MaLoai == l.MaLoai ? "selected" : "")>@l.TenLoai</option>
+            }
+        </select>
+
+        <label>Giá từ:</label>
+        <input type="number" step="0.01" name="giaMin" value="@(ViewBag.GiaMin ?? "")" style="width:120px" />
+
+        <label>đến</label>
+        <input type="number" step="0.01" name="giaMax" value="@(ViewBag.GiaMax ?? "")" style="width:120px" />
+
+        <button type="submit" class="btn btn-primary">Tìm</button>
+    </div>
+}
+
+<hr />
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Mã</th>
+                <th>Tên</th>
+                <th>Loại</th>
+                <th>Giá</th>
+                <th>Chi tiết</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <td>@p.MaSP</td>
+                    <td>@p.TenSP</td>
+                    <td>@p.MaLoai</td>
+                    <td>@p.Gia</td>
+                    <td>@Html.ActionLink("Xem", "HienThiCTSanPham", new { id = p.MaSP })</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Không có sản phẩm phù hợp.</p>
+}

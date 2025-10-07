@@ -1,0 +1,26 @@
+﻿@model IEnumerable<LTWeb06.Models.Loai>
+@{
+    ViewBag.Title = "HienThiLoai";
+}
+
+<h2>HienThiLoai</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>MaLoai</th>
+            <th>TenLoai</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+         {
+            <tr>
+                <td>@item.MaLoai</td>
+                <td>@item.TenLoai</td>
+                <td>
+                    @Html.ActionLink("Chi tiết", "HienThiSPTheoLoai", new { id = item.MaLoai })
+                </td>
+            </tr>
+         }
+    </tbody>
+</table>
