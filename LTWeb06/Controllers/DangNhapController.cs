@@ -24,42 +24,43 @@ namespace LTWeb06.Controllers
                 ViewBag.ThongBao = "Vui lòng nhập SĐT và mật khẩu.";
                 return View();
             }
-            string connStr = ConfigurationManager.ConnectionStrings[""].ConnectionString;
+            return RedirectToAction("HienThiSanPham", "Home");
+            // string connStr = ConfigurationManager.ConnectionStrings[""].ConnectionString;
 
-            using (SqlConnection con = new SqlConnection(connStr))
-            {
-                string sql = @"
-                    SELECT MaKH, TenKH, SDT
-                    FROM tbl_KhachHang
-                    WHERE SDT = @sdt AND MatKhau = @mk
-                ";
+            // using (SqlConnection con = new SqlConnection(connStr))
+            // {
+            //     string sql = @"
+            //         SELECT MaKH, TenKH, SDT
+            //         FROM tbl_KhachHang
+            //         WHERE SDT = @sdt AND MatKhau = @mk
+            //     ";
 
-                using (SqlCommand cmd = new SqlCommand(sql, con))
-                {
-                    cmd.Parameters.AddWithValue("@sdt", dn.SDT.Trim());
-                    cmd.Parameters.AddWithValue("@mk", dn.MatKhau.Trim());
+            //     using (SqlCommand cmd = new SqlCommand(sql, con))
+            //     {
+            //         cmd.Parameters.AddWithValue("@sdt", dn.SDT.Trim());
+            //         cmd.Parameters.AddWithValue("@mk", dn.MatKhau.Trim());
 
-                    con.Open();
-                    using (SqlDataReader r = cmd.ExecuteReader())
-                    {
-                        if (r.Read())
-                        {
-                            int maKH = Convert.ToInt32(r["MaKhachHang"]);
-                            string sdtDb = r["SoDienThoai"].ToString();
+            //         con.Open();
+            //         using (SqlDataReader r = cmd.ExecuteReader())
+            //         {
+            //             if (r.Read())
+            //             {
+            //                 int maKH = Convert.ToInt32(r["MaKhachHang"]);
+            //                 string sdtDb = r["SoDienThoai"].ToString();
 
-                            Session["MaKH"] = maKH;
-                            Session["SDT"] = sdtDb;
+            //                 Session["MaKH"] = maKH;
+            //                 Session["SDT"] = sdtDb;
 
-                            return RedirectToAction("HienThiSanPham", "Home");
-                        }
-                        else
-                        {
-                            ViewBag.ThongBao = "Sai SĐT hoặc Mật Khẩu";
-                            return View();
-                        }
-                    }
-                }
-            }
+            //                 return RedirectToAction("HienThiSanPham", "Home");
+            //             }
+            //             else
+            //             {
+            //                 ViewBag.ThongBao = "Sai SĐT hoặc Mật Khẩu";
+            //                 return View();
+            //             }
+            //         }
+            //     }
+            // }
         }
     }
 }
